@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const userSchema = new mongoose.Schema({ 
+const contactSchema = new mongoose.Schema({ 
     firstName: {
         type: String,
         required: true
@@ -10,23 +10,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
+    phone: {
         type: String,
         unique: true,
         required: true
     },
-    password: {
-        type: String,
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
-    },
-    
-      userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    }
     
   },
-  { timestamps: true } 
+  
 );
 
-const User = mongoose.model("User", userSchema);
+const Contact = mongoose.model("Contact", contactSchema);
 /*const user_1=new User({
   firstName:"tests",
   lastName:"tests",
@@ -34,4 +33,4 @@ const User = mongoose.model("User", userSchema);
   password: "tests123"
 })
 user_1.save();*/
-export default User;
+export default Contact;

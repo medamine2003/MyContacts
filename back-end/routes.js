@@ -1,16 +1,14 @@
-import express from "express";
-import User from "./models/User.js";
 
+import express from "express";
+import authRoutes from "./routes/auth.js";
+import usersRoutes from "./routes/user.js";
+
+import contactRoutes from "./routes/contact.js";
 const router = express.Router();
 
-// Route GET /api/users
-router.get("/users", async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ error: "Erreur serveur" });
-  }
-});
+
+router.use("/auth", authRoutes);
+router.use("/contacts", contactRoutes);
+router.use("/users", usersRoutes);
 
 export default router;

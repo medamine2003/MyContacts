@@ -1,19 +1,20 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import userRoutes from "./routes.js"; 
-
+import { swaggerUi, swaggerSpec } from "./swagger.js";
 
 
 const app = express();
-dotenv.config();
+
 
 const PORT=process.env.PORT || 7000;
 const MONGOURL=process.env.MONGO_URL;
 app.use(express.json());
 app.use("/api", userRoutes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 mongoose.connect(MONGOURL, 
-    { useNewUrlParser: true, useUnifiedTopology: true }
     ).then(()=>{
     console.log("Database is connected")
     app.listen(PORT, ()=>{
