@@ -71,10 +71,10 @@ function ContactForm() {
     setForm({ firstName: "", lastName: "", phone: "" });
   };
 
-  // ✅ Nouvelle fonction de déconnexion
+  
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Supprimer le token
-    navigate("/login"); // Rediriger vers la page de login
+    localStorage.removeItem("token"); 
+    navigate("/login"); 
   };
 
   return (
@@ -84,7 +84,7 @@ function ContactForm() {
           <button className="btn btn-secondary">Page d'accueil</button>
         </Link>
 
-        {/* ✅ Bouton de déconnexion */}
+        
         <button className="btn btn-danger" onClick={handleLogout}>
           Déconnexion
         </button>
@@ -94,7 +94,7 @@ function ContactForm() {
 
       {error && <div className="alert alert-danger">{error}</div>}
 
-      {/* Formulaire */}
+      
       <div className="card p-3 mb-4 shadow-sm">
         <h5>{editId ? "Modifier le contact" : "Ajouter un contact"}</h5>
         <form onSubmit={handleSubmit} className="row g-3">
