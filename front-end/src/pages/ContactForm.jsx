@@ -1,76 +1,76 @@
-import { useEffect, useState } from "react";
-import {
-  getContacts,
-  createContact,
-  deleteContact,
-  updateContact,
-} from "../services/contactServices";
+// import { useEffect, useState } from "react";
+// import {
+//   getContacts,
+//   createContact,
+//   deleteContact,
+//   updateContact,
+// } from "../services/contactServices";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 function ContactForm() {
-  const [contacts, setContacts] = useState([]);
-  const [form, setForm] = useState({ firstName: "", lastName: "", phone: "" });
-  const [editId, setEditId] = useState(null); 
-  const [error, setError] = useState("");
+//   const [contacts, setContacts] = useState([]);
+//   const [form, setForm] = useState({ firstName: "", lastName: "", phone: "" });
+//   const [editId, setEditId] = useState(null); 
+//   const [error, setError] = useState("");
 
-  const fetchContacts = async () => {
-    try {
-      const data = await getContacts();
-      console.log("good")
-      setContacts(data);
-    } catch (err) {
-      setError("Erreur lors du chargement des contacts");
-    }
-  };
+//   const fetchContacts = async () => {
+//     try {
+//       const data = await getContacts();
+//       console.log("good")
+//       setContacts(data);
+//     } catch (err) {
+//       setError("Erreur lors du chargement des contacts");
+//     }
+//   };
 
-  useEffect(() => {
-    fetchContacts();
-  }, []);
+//   useEffect(() => {
+//     fetchContacts();
+//   }, []);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+//   const handleChange = (e) => {
+//     setForm({ ...form, [e.target.name]: e.target.value });
+//   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      if (editId) {
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       if (editId) {
        
-        await updateContact(editId, form);
-        setEditId(null);
-      } else {
+//         await updateContact(editId, form);
+//         setEditId(null);
+//       } else {
         
-        await createContact(form);
-      }
+//         await createContact(form);
+//       }
 
-      setForm({ firstName: "", lastName: "", phone: "" });
-      fetchContacts();
-    } catch (err) {
-      setError(err.response?.data?.error || "Erreur lors de la soumission");
-    }
-  };
+//       setForm({ firstName: "", lastName: "", phone: "" });
+//       fetchContacts();
+//     } catch (err) {
+//       setError(err.response?.data?.error || "Erreur lors de la soumission");
+//     }
+//   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Supprimer ce contact ?")) {
-      await deleteContact(id);
-      fetchContacts();
-    }
-  };
+//   const handleDelete = async (id) => {
+//     if (window.confirm("Supprimer ce contact ?")) {
+//       await deleteContact(id);
+//       fetchContacts();
+//     }
+//   };
 
-  const handleEdit = (contact) => {
-    setForm({
-      firstName: contact.firstName,
-      lastName: contact.lastName,
-      phone: contact.phone,
-    });
-    setEditId(contact._id);
-  };
+//   const handleEdit = (contact) => {
+//     setForm({
+//       firstName: contact.firstName,
+//       lastName: contact.lastName,
+//       phone: contact.phone,
+//     });
+//     setEditId(contact._id);
+//   };
 
-  const handleCancelEdit = () => {
-    setEditId(null);
-    setForm({ firstName: "", lastName: "", phone: "" });
-  };
+//   const handleCancelEdit = () => {
+//     setEditId(null);
+//     setForm({ firstName: "", lastName: "", phone: "" });
+//   };
 
   return (
 //     <div className="container mt-5">
