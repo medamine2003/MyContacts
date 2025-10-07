@@ -24,6 +24,6 @@ export const deleteContact = async (id) => {
 };
 
 export const updateContact = async (id, contactData) => {
-  const res = await axios.patch(`${API_URL}/api/contacts${id}`, contactData, getAuthHeader());
+  const res = await axios.patch(`${API_URL}/api/contacts/${id}`, contactData, getAuthHeader());
   return res.data;
 };
