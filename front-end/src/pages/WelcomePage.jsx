@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function WelcomePage() {
   return (
-    <div className="container">
+    <div >
       <div className="row justify-content-center align-items-center min-vh-100">
         <div className="col-md-6 col-lg-5">
           <div className="card shadow-lg border-0">
