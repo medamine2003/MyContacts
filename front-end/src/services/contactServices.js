@@ -14,7 +14,7 @@ export const getContacts = async () => {
 };
 
 export const createContact = async (contactData) => {
-  const res = await axios.post(API_URL, contactData, getAuthHeader());
+  const res = await axios.post(`${API_URL}/api/contacts`, contactData, getAuthHeader());
   return res.data;
 };
 
