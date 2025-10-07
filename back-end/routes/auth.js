@@ -52,15 +52,36 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
+    
+    // Vérifier si l'utilisateur existe déjà
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User already exists' });
+    }
+    
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ firstName, lastName, email, password: hashedPassword });
     await user.save();
-    res.status(201).json({ message: 'User registered successfully' });
+    
+    // Générer le token JWT
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    
+    // Retourner le token ET les infos utilisateur
+    res.status(201).json({ 
+      token,
+      user: {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email
+      }
+    });
   } catch (error) {
     console.log("Error in /register:", error);
     res.status(500).json({ error: 'Registration failed', details: error.message });
   }
 });
+
 
 /**
  * @swagger
