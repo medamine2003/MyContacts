@@ -17,13 +17,16 @@ function ContactForm() {
   const navigate = useNavigate(); 
 
   const fetchContacts = async () => {
-    try {
-      const data = await getContacts();
-      setContacts(data);
-    } catch (err) {
-      setError("Erreur lors du chargement des contacts");
-    }
-  };
+  try {
+    const data = await getContacts();
+    console.log("🔍 Contacts reçus:", data);
+    console.log("🔍 Nombre de contacts:", data.length);
+    console.log("🔍 UserIds des contacts:", data.map(c => c.userId));
+    setContacts(data);
+  } catch (err) {
+    setError("Erreur lors du chargement des contacts");
+  }
+};
 
   useEffect(() => {
     fetchContacts();
