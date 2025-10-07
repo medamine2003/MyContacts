@@ -169,9 +169,9 @@ npm run dev
 ```json
 {
   "_id": "66cde8c03b91c8f1f024",
-  "firstName": "Ali",
-  "lastName": "Ben Youssef",
-  "phone": "+21650011222"
+  "firstName": "john",
+  "lastName": "doe",
+  "phone": "+888850011222"
 }
 ```
 
