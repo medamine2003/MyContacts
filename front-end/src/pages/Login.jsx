@@ -15,6 +15,7 @@ function Login() {
     e.preventDefault();
     try {
       const data = await login(form);
+      
       localStorage.setItem("token", data.token); 
       navigate("/contactform"); 
     } catch (err) {

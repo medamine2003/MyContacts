@@ -16,14 +16,24 @@ function ContactForm() {
 
   const navigate = useNavigate(); 
 
-  const fetchContacts = async () => {
+ const fetchContacts = async () => {
   try {
+    const token = localStorage.getItem("token");
+    console.log("🔑 Token complet:", token);
+    
+    // Décode le token pour voir quel userId il contient
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      console.log("🔓 Token décodé:", payload);
+      console.log("🔓 UserId dans le token:", payload.userId);
+    }
+    
     const data = await getContacts();
     console.log("🔍 Contacts reçus:", data);
-    console.log("🔍 Nombre de contacts:", data.length);
     console.log("🔍 UserIds des contacts:", data.map(c => c.userId));
     setContacts(data);
   } catch (err) {
+    console.error("❌ Erreur:", err);
     setError("Erreur lors du chargement des contacts");
   }
 };
