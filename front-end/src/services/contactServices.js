@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/contacts";
+import API_URL from '../config/api';
 
 const getAuthHeader = () => ({
   headers: {

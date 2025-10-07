@@ -9,11 +9,12 @@ import { swaggerUi, swaggerSpec } from "./swagger.js";
 
 const app = express();
 
-// CORS dynamique pour production et développement
+
 const allowedOrigins = [
   "http://localhost:5173",
-  "http://localhost:5174", 
-  process.env.FRONTEND_URL, // URL Netlify
+  "http://localhost:5174",
+  "https://my-contacts-iota.vercel.app/", 
+  process.env.FRONTEND_URL, 
 ];
 
 app.use(cors({
@@ -33,7 +34,6 @@ const MONGOURL = process.env.MONGO_URL;
 
 app.use(express.json());
 
-// Route de santé pour vérifier que le serveur fonctionne
 app.get("/", (req, res) => {
   res.json({ message: "API is running", status: "OK" });
 });

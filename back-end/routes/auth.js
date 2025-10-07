@@ -1,4 +1,3 @@
-// routes/auth.js
 import express from "express";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
@@ -53,7 +52,7 @@ router.post('/register', async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     
-    // Vérifier si l'utilisateur existe déjà
+    
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: 'User already exists' });
@@ -63,10 +62,10 @@ router.post('/register', async (req, res) => {
     const user = new User({ firstName, lastName, email, password: hashedPassword });
     await user.save();
     
-    // Générer le token JWT
+    
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     
-    // Retourner le token ET les infos utilisateur
+    
     res.status(201).json({ 
       token,
       user: {
