@@ -13,7 +13,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
-  "https://my-contacts-omega-one.vercel.app/", 
+  "https://my-contacts-omega-one.vercel.app/login", 
   process.env.FRONTEND_URL, 
 ];
 
