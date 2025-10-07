@@ -17,7 +17,7 @@ function ContactForm() {
    const fetchContacts = async () => {
      try {
        const data = await getContacts();
-       console.log("Résultat de getContacts:", data);
+       
        setContacts(data);
     } catch (err) {
        setError("Erreur lors du chargement des contacts");
