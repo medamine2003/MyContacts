@@ -166,11 +166,30 @@ import requireAuth from "../routes/requireAuth.js";
 
 const router = express.Router();
 
+import mongoose from "mongoose"; // ← Ajoute ça en haut du fichier si pas déjà présent
+
 router.get("/", requireAuth, async (req, res) => {
   try {
+    console.log("🔍 === DEBUG BACKEND GET CONTACTS ===");
+    console.log("🔍 req.user:", req.user);
+    console.log("🔍 req.user.id:", req.user.id);
+    console.log("🔍 Type de req.user.id:", typeof req.user.id);
+    
+    // Récupère TOUS les contacts pour debug
+    const allContacts = await Contact.find({});
+    console.log("🔍 TOUS les contacts dans la DB:");
+    allContacts.forEach(c => {
+      console.log(`   - ${c.firstName} ${c.lastName} | userId: ${c.userId}`);
+    });
+    
+    // Filtre par userId
     const contacts = await Contact.find({ userId: req.user.id });
+    console.log("🔍 Contacts filtrés pour cet utilisateur:", contacts.length);
+    console.log("🔍 ===================================");
+    
     res.json(contacts);
   } catch (err) {
+    console.error("❌ Erreur:", err);
     res.status(500).json({ error: "Erreur serveur", details: err.message });
   }
 });
