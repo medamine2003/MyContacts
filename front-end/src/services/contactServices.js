@@ -9,7 +9,7 @@ const getAuthHeader = () => ({
 });
 
 export const getContacts = async () => {
-  const res = await axios.get(API_URL, getAuthHeader());
+  const res = await axios.get(`${API_URL}/api/contacts`, getAuthHeader());
   return res.data;
 };
 
@@ -19,11 +19,11 @@ export const createContact = async (contactData) => {
 };
 
 export const deleteContact = async (id) => {
-  const res = await axios.delete(`${API_URL}/${id}`, getAuthHeader());
+  const res = await axios.delete(`${API_URL}/api/contacts/${id}`, getAuthHeader());
   return res.data;
 };
 
 export const updateContact = async (id, contactData) => {
-  const res = await axios.patch(`${API_URL}/${id}`, contactData, getAuthHeader());
+  const res = await axios.patch(`${API_URL}/api/contacts${id}`, contactData, getAuthHeader());
   return res.data;
 };
