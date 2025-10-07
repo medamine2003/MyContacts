@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // ✅ ajoute useNavigate ici
+import { useNavigate, Link } from "react-router-dom";
 import {
   getContacts,
   createContact,
@@ -14,7 +14,7 @@ function ContactForm() {
   const [editId, setEditId] = useState(null);
   const [error, setError] = useState("");
 
-  const navigate = useNavigate(); // ✅ Hook pour rediriger
+  const navigate = useNavigate(); 
 
   const fetchContacts = async () => {
     try {
@@ -148,7 +148,7 @@ function ContactForm() {
         </form>
       </div>
 
-      {/* Liste des contacts */}
+      
       <div className="card p-3 shadow-sm">
         <h5>Liste de mes contacts</h5>
         {contacts.length === 0 ? (
