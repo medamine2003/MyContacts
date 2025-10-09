@@ -14,33 +14,11 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("🔐 Tentative de connexion...");
-      
       const data = await login(form);
       
-      console.log("✅ Connexion réussie");
-      console.log("🔑 Nouveau token:", data.token);
-      
-      // Supprime l'ancien token avant de sauvegarder le nouveau
-      localStorage.removeItem("token");
-      
-      // Sauvegarde le nouveau token
-      localStorage.setItem("token", data.token);
-      
-      // Vérifie que le token est bien sauvegardé
-      const savedToken = localStorage.getItem("token");
-      console.log("✅ Token sauvegardé:", savedToken);
-      
-      // Décode le token pour voir le userId
-      if (savedToken) {
-        const payload = JSON.parse(atob(savedToken.split('.')[1]));
-        console.log("🔓 UserId dans le token:", payload.userId);
-        console.log("🔓 Expire à:", new Date(payload.exp * 1000));
-      }
-      
+      localStorage.setItem("token", data.token); 
       navigate("/contactform"); 
     } catch (err) {
-      console.error("❌ Erreur de connexion:", err);
       setError(err.response?.data?.details || "Erreur login");
     }
   };
@@ -50,22 +28,8 @@ function Login() {
       <h2>Login</h2>
       {error && <p className="text-danger">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Email" 
-          onChange={handleChange} 
-          className="form-control my-2" 
-          required
-        />
-        <input 
-          type="password" 
-          name="password" 
-          placeholder="Password" 
-          onChange={handleChange} 
-          className="form-control my-2" 
-          required
-        />
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} className="form-control my-2" />
+        <input type="password" name="password" placeholder="Password" onChange={handleChange} className="form-control my-2" />
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
     </div>
